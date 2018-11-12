@@ -1,5 +1,6 @@
 \version "2.18.0"
 #(set-default-paper-size "letter" 'landscape)
+#(set-global-staff-size 24)
 
 \header {
 	dedication = \markup{\italic"For Christian Clark"}
@@ -8,7 +9,8 @@
 %name
 "}}
 	subtitle = " "
-	composer = "Brian Ellis"
+	composer = \markup{\column{" " "Brian Ellis" " "}}
+	arranger = " " 
 	tagline = "www.brianellissound.com"
 }
 
@@ -33,11 +35,11 @@
 	\clef "treble"
 	\override Score.BarLine.stencil = ##f
 	\override Score.BarNumber.stencil = ##f
-
+	s1^\markup{\italic{"sustain all notes"}}
 %part
 
 	\revert Score.BarLine.stencil
-	\bar "|." \mark \markup{\italic{"~ a hot second"}}
+	\bar "|." \mark \markup{\normalsize \italic{"~ a hot second"}}
 
 
 }

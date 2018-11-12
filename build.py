@@ -1,3 +1,4 @@
+import datetime
 import sys
 import copy
 import random
@@ -18,9 +19,9 @@ theseNotes = []
 while theseNotes == []:
 	theseNotes = random.sample(notes,3)
 	theseNotes = sorted(theseNotes)
-	if theseNotes[1] - theseNotes[0] < 3:
+	if theseNotes[1] - theseNotes[0] < 2:
 		theseNotes = []
-	elif theseNotes[2] - theseNotes[1] < 3:
+	elif theseNotes[2] - theseNotes[1] < 2:
 		theseNotes = []
 	elif theseNotes[2] - theseNotes[0] < 5:
 		theseNotes = []
@@ -85,7 +86,7 @@ for i in range(len(allStates)):
 	for j in range(len(allStates[i])):
 		if allStates[i][j] == 1:
 			bit = bit +' '+toLilyName(theseNotes[j])
-	bit = bit + '>1:32 ~'
+	bit = bit + '>1 ~'
 	lilyPrint.append(bit)
 
 fd = open('score.ly','r')
@@ -95,7 +96,8 @@ for l in fd.readlines():
 	if "part" in l:
 		toWrite = " ".join(lilyPrint)
 	if "name" in l:
-		toWrite = "Generated for " + dedication
+		today = datetime.date.today()
+		toWrite = "Generated for " + dedication + " on "+today.strftime('%b. %d, %Y')
 	out.write(toWrite+'\n')
 out.close()
 fd.close()
