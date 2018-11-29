@@ -4,14 +4,23 @@ import copy
 import random
 
 timestamp = sys.argv[1]
-dedication = sys.argv[2]
+clef = sys.argv[2]
+dedication = sys.argv[3]
 
 print timestamp
 lilyNoteNames = ['c','cis','d','ees','e','f','fis','g','gis','a','bes','b']
 
+staffToOffset = {}
+staffToOffset['treble'] = 1
+staffToOffset['bass'] = -2
+staffToOffset['alto'] = 0
+staffToOffset['tenor'] = 0
+staffToOffset['treble_8'] = 0
+staffToOffset['treble^8'] = 2
+
 def toLilyName(noteNumber):
 	pitchClass = noteNumber%12
-	numberOfUpTicks = 1 + int(noteNumber/12)
+	numberOfUpTicks = staffToOffset[clef] + int(noteNumber/12)
 	return lilyNoteNames[pitchClass] + "'"*numberOfUpTicks
 
 notes = [2,4,7,9,10,11,12,14,15,16,17,19]
@@ -19,14 +28,26 @@ theseNotes = []
 while theseNotes == []:
 	theseNotes = random.sample(notes,3)
 	theseNotes = sorted(theseNotes)
+
+	#avoid minor seconds
 	if theseNotes[1] - theseNotes[0] < 2:
 		theseNotes = []
 	elif theseNotes[2] - theseNotes[1] < 2:
 		theseNotes = []
+	
+	#avoid total range being smaller than a 4th
 	elif theseNotes[2] - theseNotes[0] < 5:
+		theseNotes = []
+
+	#avoid octaves anywhere
+	elif theseNotes[0] == theseNotes[1]%12:
 		theseNotes = []
 	elif theseNotes[0] == theseNotes[2]%12:
 		theseNotes = []
+	elif theseNotes[1] == theseNotes[2]%12:
+		theseNotes = []
+
+	#avoid root position triads
 	elif theseNotes[2] -theseNotes[0] == 7 and (theseNotes[1]-theseNotes[0] == 3 or theseNotes[1]-theseNotes[0] == 4):
 		theseNotes = []
 
@@ -93,6 +114,8 @@ fd = open('score.ly','r')
 out = open('out/out_'+str(timestamp)+'.ly','w')
 for l in fd.readlines():
 	toWrite = l
+	if "clef" in l:
+		toWrite = '\\clef "'+clef+'"'
 	if "part" in l:
 		toWrite = " ".join(lilyPrint)
 	if "name" in l:
