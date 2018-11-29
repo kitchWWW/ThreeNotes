@@ -3,7 +3,7 @@
 #(set-global-staff-size 24)
 
 \header {
-	dedication = \markup{\column{\italic"For a joke with Christian Clark" " "}}
+	dedication = \markup{\column{\italic"For a meme with Christian Clark" " "}}
 	title = "Three Notes"
 	subsubtitle = \markup{\italic{"
 %name

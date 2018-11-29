@@ -2,10 +2,13 @@ import datetime
 import sys
 import copy
 import random
+import os
 
 timestamp = sys.argv[1]
 clef = sys.argv[2]
 dedication = sys.argv[3]
+
+os.mkdir('out/'+timestamp)
 
 print timestamp
 lilyNoteNames = ['c','cis','d','ees','e','f','fis','g','gis','a','bes','b']
@@ -111,7 +114,7 @@ for i in range(len(allStates)):
 	lilyPrint.append(bit)
 
 fd = open('Score.ly','r')
-out = open('out/out_'+str(timestamp)+'.ly','w')
+out = open('out/'+str(timestamp)+'/ThreeNotesScore.ly','w')
 for l in fd.readlines():
 	toWrite = l
 	if "clef" in l:
