@@ -110,7 +110,7 @@ for i in range(len(allStates)):
 	bit = bit + '>1 ~'
 	lilyPrint.append(bit)
 
-fd = open('score.ly','r')
+fd = open('Score.ly','r')
 out = open('out/out_'+str(timestamp)+'.ly','w')
 for l in fd.readlines():
 	toWrite = l
