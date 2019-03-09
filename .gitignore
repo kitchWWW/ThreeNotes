@@ -1,6 +1,4 @@
 *.DS_Store
 *.pdf
 *.midi
-exampleOutput/*_data/*
-**.wav
-
+exampleOutput/*
