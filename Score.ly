@@ -13,7 +13,7 @@
 	tagline = \markup{\center-column{
 	"  "
 	"  "
-	\italic{"A fresh scores should be generated for every performance at"} 	"www.brianellissound.com/threeNotes"}}
+	\italic{"A fresh score should be generated for every performance at"} 	"www.brianellissound.com/threeNotes"}}
 }
 
 \paper{
