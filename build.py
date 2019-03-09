@@ -10,8 +10,8 @@ dedication = sys.argv[3]
 
 os.mkdir('out/'+timestamp)
 
-if '&&&' in timestamp:
-	random.seed(a=timestamp.split('&&&')[0])
+if '---' in timestamp:
+	random.seed(a=timestamp.split('---')[0])
 
 print timestamp
 lilyNoteNames = ['c','cis','d','ees','e','f','fis','g','gis','a','bes','b']
