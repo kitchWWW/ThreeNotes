@@ -32,15 +32,18 @@
 	\layout {}
 
 	\new Staff \absolute {
+  \override Score.BarNumber.break-visibility = ##(#t #t #t)
         \once \override Staff.TimeSignature #'stencil = ##f 
 	\time 1/1
 %clef
 	\override Score.BarLine.stencil = ##f
-	\override Score.BarNumber.stencil = ##f
 	s1^\markup{\italic{"with sustain"}}
+  \set Score.currentBarNumber = #1
+
 %part
 
 	\revert Score.BarLine.stencil
+	\override Score.BarNumber.stencil = ##f
 	\bar "|." \mark \markup{\normalsize \italic{"~ a hot second"}}
 
 
